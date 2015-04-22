@@ -1,4 +1,5 @@
 import datetime
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
@@ -25,8 +26,10 @@ class ProductList(ListView):
         queryset = super(ProductList, self).get_queryset()
         if 'order_by' in self.request.GET:
             if self.request.GET['order_by'] == 'asc':
+                messages.success(self.request, 'Products ordered by most rated')
                 return queryset.order_by('-like_counter')
             elif self.request.GET['order_by'] == 'desc':
+                messages.success(self.request, 'Products ordered by least rated')
                 return queryset.order_by('like_counter')
         return queryset
 
@@ -65,6 +68,7 @@ class ProductDetailView(FormMixin, DetailView):
             Comments.objects.create(title=data['title'],
                                     comment=data['comment'],
                                     product=self.object)
+            messages.success(request, 'Your comment successfully added!')
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -80,4 +84,5 @@ def like(request, pk):
     product = Product.objects.get(pk=pk)
     product.like_counter += 1
     product.save()
+    messages.success(request, 'Your like  successfully added!')
     return redirect(reverse('product', args=[product.slug]))
