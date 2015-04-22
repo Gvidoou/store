@@ -20,3 +20,4 @@ class Comments(models.Model):
     title = models.CharField(max_length=100, blank=True)
     comment = models.TextField(blank=False)
     product = models.ForeignKey(Product, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)

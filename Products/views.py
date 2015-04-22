@@ -1,3 +1,4 @@
+import datetime
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
@@ -36,8 +37,10 @@ class ProductDetailView(FormMixin, DetailView):
         context['title'] = 'Product details'
         form_class = self.get_form_class()
         context['form'] = self.get_form(form_class)
+        time = datetime.datetime.now() - datetime.timedelta(days=1)
         try:
-            context['comments'] = Comments.objects.filter(product=self.object)
+            context['comments'] = Comments.objects.filter(
+                product=self.object, created_at__gte=time).order_by('-created_at')
         except:
             pass
         return context
