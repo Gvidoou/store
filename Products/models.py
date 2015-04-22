@@ -11,6 +11,7 @@ class Product(models.Model):
     price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    like_counter = models.IntegerField(default=0)
 
 
 class Comments(models.Model):

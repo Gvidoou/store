@@ -12,8 +12,9 @@
                     {{ product.description }}
                     <br>
                     <h3><span class="label label-danger"> Price: {{ product.price }}</span></h3>
+                    Rating: {{ product.like_counter }}
                 </div>
-
+                   <a href="{% url 'like' pk=product.id %}"><button class="btn btn-default btn-group-justified"> <span class="glyphicon glyphicon-thumbs-up "></span></button></a>
             </div>
             <div class="panel panel-default">
                 <form action="" method="post" name="">

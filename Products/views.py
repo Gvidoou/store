@@ -1,5 +1,6 @@
 import datetime
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from Products.forms import CommentsForm
@@ -61,3 +62,13 @@ class ProductDetailView(FormMixin, DetailView):
 
     def form_valid(self, form):
         return super(ProductDetailView, self).form_valid(form)
+
+
+def like(request, pk):
+    """
+    simple view to save like requests
+    """
+    product = Product.objects.get(pk=pk)
+    product.like_counter += 1
+    product.save()
+    return redirect(reverse('product', args=[product.slug]))
