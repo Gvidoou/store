@@ -6,7 +6,7 @@
             {%  for product in products  %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <b>{{ product.name }} </b>
+                    <a href="{% url 'product' slug=product.slug %}"><b>{{ product.name }} </b></a>
                 </div>
                 <div class="panel-body">
                     <h4>Description:</h4>

@@ -25,7 +25,10 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-
+if not DEBUG:
+    SITE_ID = 1
+else:
+    SITE_ID = 2
 
 # Application definition
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Products',
+    'django.contrib.sites',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -13,6 +13,10 @@ class Product(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     like_counter = models.IntegerField(default=0)
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('product', args=[self.slug])
+
 
 class Comments(models.Model):
     """
