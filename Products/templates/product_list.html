@@ -13,11 +13,16 @@
                     {{ product.description }}
                     <br>
                     <h3><span class="label label-danger"> Price: {{ product.price }}</span></h3>
+                    Rating: {{ product.like_counter }}
                 </div>
-
             </div>
         {% endfor %}
-
+        <nav>
+          <ul class="pager">
+            <li><a href="{% url 'products_list' %}?order_by=asc">Most rated</a></li>
+            <li><a href="{% url 'products_list' %}?order_by=desc">List rated</a></li>
+          </ul>
+        </nav>
     </div>
 </div>
 {% endblock %}

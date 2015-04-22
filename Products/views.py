@@ -21,6 +21,15 @@ class ProductList(ListView):
         context['title'] = 'List of products'
         return context
 
+    def get_queryset(self):
+        queryset = super(ProductList, self).get_queryset()
+        if 'order_by' in self.request.GET:
+            if self.request.GET['order_by'] == 'asc':
+                return queryset.order_by('-like_counter')
+            elif self.request.GET['order_by'] == 'desc':
+                return queryset.order_by('like_counter')
+        return queryset
+
 
 class ProductDetailView(FormMixin, DetailView):
     """
