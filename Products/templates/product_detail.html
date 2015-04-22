@@ -13,6 +13,29 @@
                     <br>
                     <h3><span class="label label-danger"> Price: {{ product.price }}</span></h3>
                 </div>
+
+            </div>
+            <div class="panel panel-default">
+                <form action="" method="post" name="">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {% for field in form  %}
+                    {% if field.errors %}
+                        <ul class="list-unstyled">
+                        {% for error in field.errors %}
+                          <li class="list-group-item-danger">{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                        <div class="form-group has-error">
+                    {% else %}
+                        <div class="form-group ">
+                    {% endif %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                        </div>
+                    <br>
+                    {% endfor %}
+                <input type="submit" class="btn btn-primary btn-group-justified" value="add comment">
             </div>
     </div>
 </div>
