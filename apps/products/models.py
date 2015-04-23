@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Product(models.Model):
@@ -14,7 +15,6 @@ class Product(models.Model):
     like_counter = models.IntegerField(default=0)
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('product', args=[self.slug])
 
 

@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
-from Products import views
+
+from apps.products import views
 
 
 urlpatterns = patterns(

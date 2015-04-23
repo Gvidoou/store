@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Products', '0002_auto_20150422_0945'),
+        ('products', '0002_auto_20150422_0945'),
     ]
 
     operations = [
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=100)),
                 ('comment', models.TextField()),
-                ('product', models.ForeignKey(to='Products.Product')),
+                ('product', models.ForeignKey(to='apps.products.Product')),
             ],
             options={
             },
