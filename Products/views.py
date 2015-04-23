@@ -29,7 +29,8 @@ class ProductList(ListView):
                 messages.success(self.request, 'Products ordered by most rated')
                 return queryset.order_by('-like_counter')
             elif self.request.GET['order_by'] == 'desc':
-                messages.success(self.request, 'Products ordered by least rated')
+                messages.success(self.request,
+                                 'Products ordered by least rated')
                 return queryset.order_by('like_counter')
         return queryset
 
@@ -53,7 +54,8 @@ class ProductDetailView(FormMixin, DetailView):
         time = datetime.datetime.now() - datetime.timedelta(days=1)
         try:
             context['comments'] = Comments.objects.filter(
-                product=self.object, created_at__gte=time).order_by('-created_at')
+                product=self.object,
+                created_at__gte=time).order_by('-created_at')
         except:
             pass
         return context
