@@ -25,10 +25,7 @@ DEBUG = False
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
-if not DEBUG:
-    SITE_ID = 1
-else:
-    SITE_ID = 2
+SITE_ID = 1
 
 # Application definition
 
@@ -71,6 +68,12 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+    }
+}
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 

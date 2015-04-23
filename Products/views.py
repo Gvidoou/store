@@ -24,7 +24,7 @@ class ProductList(ListView):
 
     def get_queryset(self):
         queryset = super(ProductList, self).get_queryset()
-        if 'order_by' in self.request.GET:
+        if 'order_by' in self.request.GET and queryset:
             if self.request.GET['order_by'] == 'asc':
                 messages.success(self.request, 'Products ordered by most rated')
                 return queryset.order_by('-like_counter')
