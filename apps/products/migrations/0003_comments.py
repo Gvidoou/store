@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=100)),
                 ('comment', models.TextField()),
-                ('product', models.ForeignKey(to='apps.products.Product')),
+                ('product', models.ForeignKey(to='products.Product')),
             ],
             options={
             },
