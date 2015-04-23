@@ -1,7 +1,6 @@
-import datetime
-
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.utils import timezone
 
 from apps.products.models import Product, Comments
 
@@ -56,8 +55,7 @@ class ProductTest(TestCase):
         test list of comments on page
         it should shows only last comments for 24 hours
         """
-        yesterday = datetime.datetime.now() - datetime.timedelta(days=1,
-                                                                 hours=1)
+        yesterday = timezone.now() - timezone.timedelta(days=1, hours=1)
         comment = Comments.objects.create(title='one more',
                                           comment='Some comment',
                                           product=self.octopus)

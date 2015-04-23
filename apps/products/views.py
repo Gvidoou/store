@@ -1,14 +1,13 @@
-import datetime
-
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http.response import Http404
 from django.shortcuts import redirect
+from django.utils import timezone
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 
-from products.forms import CommentsForm
+from apps.products.forms import CommentsForm
 from apps.products.models import Product, Comments
 
 
@@ -54,13 +53,10 @@ class ProductDetailView(FormMixin, DetailView):
         context['title'] = 'Product details'
         form_class = self.get_form_class()
         context['form'] = self.get_form(form_class)
-        time = datetime.datetime.now() - datetime.timedelta(days=1)
-        try:
-            context['comments'] = Comments.objects.filter(
-                product=self.object,
-                created_at__gte=time).order_by('-created_at')
-        except:
-            pass
+        time = timezone.now() - timezone.timedelta(days=1)
+        context['comments'] = Comments.objects.filter(
+            product=self.object,
+            created_at__gte=time).order_by('-created_at')
         return context
 
     def post(self, request, *args, **kwargs):
