@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 SITE_ID = 1
 
 # Application definition
@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Products',
+    'products',
     'django.contrib.sites',
 )
 
@@ -62,8 +62,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'products',
-        'USER': 'other',
-        'PASSWORD': '???',
+        'USER': 'admin',
+        'PASSWORD': '123',
 
     }
 }
@@ -92,7 +92,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )

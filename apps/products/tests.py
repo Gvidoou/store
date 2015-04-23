@@ -1,8 +1,9 @@
-import decimal
 import datetime
+
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-from Products.models import Product, Comments
+
+from apps.products.models import Product, Comments
 
 
 class ProductTest(TestCase):
