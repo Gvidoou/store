@@ -5,18 +5,18 @@
         <h3>Product page</h3>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <b>{{ product.name }} </b>
+                    <b>{{ product.name }} &nbsp; &nbsp; &nbsp;</b><span class="badge">Rating: {{ product.like_counter }}</span>
                 </div>
                 <div class="panel-body">
                     <h4>Description:</h4>
                     {{ product.description }}
                     <br>
                     <h3><span class="label label-danger"> Price: {{ product.price }}</span></h3>
-                    Rating: {{ product.like_counter }}
+
                 </div>
                    <a href="{% url 'like' pk=product.id %}"><button class="btn btn-default btn-group-justified"> <span class="glyphicon glyphicon-thumbs-up "></span></button></a>
             </div>
-            <div class="panel panel-default">
+            <div class="panel" id="comment">
                 <form action="" method="post" name="">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
