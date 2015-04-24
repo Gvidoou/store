@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 
 
 class Product(models.Model):
@@ -15,7 +15,10 @@ class Product(models.Model):
     like_counter = models.IntegerField(default=0)
 
     def get_absolute_url(self):
-        return reverse('product', args=[self.slug])
+        return reverse_lazy('product', args=[self.slug])
+
+    def __unicode__(self):
+        return 's%' % self.name
 
 
 class Comments(models.Model):
@@ -26,3 +29,9 @@ class Comments(models.Model):
     comment = models.TextField(blank=False)
     product = models.ForeignKey(Product, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse_lazy('product', args=[self.product.slug])
+
+    def __unicode__(self):
+        return 's%' % self.title
